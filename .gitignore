@@ -1,0 +1,14 @@
+# .gitignore (at repo root)
+# Python venv
+/backend/venv/
+# Node modules
+/frontend/node_modules/
+# Env files
+*.env
+/backend/.env
+# IDE files
+/.idea/
+/.vscode/
+# OS files
+.DS_Store
+Thumbs.db
