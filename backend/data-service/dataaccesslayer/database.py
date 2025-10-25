@@ -10,6 +10,10 @@ from dotenv import load_dotenv
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./data/data.db")
 
+# Ensure we use asyncpg for PostgreSQL connections
+if DATABASE_URL.startswith("postgresql://"):
+    DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://", 1)
+
 # create async engine
 engine = create_async_engine(DATABASE_URL, future=True, echo=False)
 
