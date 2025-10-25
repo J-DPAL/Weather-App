@@ -617,9 +617,3 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 - GitHub: [@J-DPAL](https://github.com/J-DPAL)
 - Project Link: [https://github.com/J-DPAL/weather-app](https://github.com/J-DPAL/weather-app)
 
----
-
-<div align="center">
-  <p><strong>Built with ❤️ for the PM Accelerator AI Engineer Internship Assessment</strong></p>
-  <p><em>Showcasing modern full-stack development with microservices architecture</em></p>
-</div>
