@@ -17,3 +17,11 @@ app.add_middleware(
 
 app.include_router(location_router, prefix="/api/v1/location")
 register_exception_handlers(app)
+
+@app.get("/")
+def root():
+    return {"service": "location-service", "status": "ready"}
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}

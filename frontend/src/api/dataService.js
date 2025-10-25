@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const DATA_SERVICE = "http://127.0.0.1:8003/api/v1/records";
+const DATA_SERVICE = import.meta.env.VITE_DATA_SERVICE_URL || "http://127.0.0.1:8003/api/v1/records";
 
 export async function fetchSavedRecords() {
   try {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const LOCATION_SERVICE = "http://127.0.0.1:8001/api/v1/location";
+const LOCATION_SERVICE = import.meta.env.VITE_LOCATION_SERVICE_URL || "http://127.0.0.1:8001/api/v1/location";
 
 export async function resolveLocation(query) {
   try {

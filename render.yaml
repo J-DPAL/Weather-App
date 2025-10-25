@@ -1,0 +1,91 @@
+# Render Blueprint for Weather App
+# Deploy all services with one click
+
+databases:
+  - name: weather-db
+    databaseName: weather_db
+    user: weather_user
+    plan: free
+
+services:
+  # Backend: Data Service
+  - type: web
+    name: weather-data-service
+    runtime: docker
+    dockerfilePath: ./backend/data-service/Dockerfile
+    dockerContext: ./backend/data-service
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: weather-db
+          property: connectionString
+      - key: SERVICE_PORT
+        value: 8003
+      - key: OPENCAGE_API_KEY
+        sync: false
+      - key: OPENWEATHER_API_KEY
+        sync: false
+    healthCheckPath: /health
+
+  # Backend: Location Service
+  - type: web
+    name: weather-location-service
+    runtime: docker
+    dockerfilePath: ./backend/location-service/Dockerfile
+    dockerContext: ./backend/location-service
+    plan: free
+    envVars:
+      - key: OPENCAGE_API_KEY
+        sync: false
+      - key: DATA_SERVICE_URL
+        fromService:
+          name: weather-data-service
+          type: web
+          property: host
+      - key: SERVICE_PORT
+        value: 8001
+    healthCheckPath: /health
+
+  # Backend: Weather Service
+  - type: web
+    name: weather-weather-service
+    runtime: docker
+    dockerfilePath: ./backend/weather-service/Dockerfile
+    dockerContext: ./backend/weather-service
+    plan: free
+    envVars:
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      - key: DATA_SERVICE_URL
+        fromService:
+          name: weather-data-service
+          type: web
+          property: host
+      - key: SERVICE_PORT
+        value: 8002
+    healthCheckPath: /health
+
+  # Frontend: React + Vite
+  - type: web
+    name: weather-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    plan: free
+    envVars:
+      - key: VITE_DATA_SERVICE_URL
+        fromService:
+          name: weather-data-service
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: VITE_LOCATION_SERVICE_URL
+        fromService:
+          name: weather-location-service
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: VITE_WEATHER_SERVICE_URL
+        fromService:
+          name: weather-weather-service
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL

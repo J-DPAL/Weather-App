@@ -138,3 +138,7 @@ register_exception_handlers(app)
 @app.get("/")
 def root():
     return {"service": "data-service", "status": "ready"}
+
+@app.get("/health")
+def health():
+    return {"status": "healthy"}

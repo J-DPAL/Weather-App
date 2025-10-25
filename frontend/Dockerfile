@@ -3,6 +3,16 @@
 FROM node:20-alpine AS build
 WORKDIR /app
 
+# Accept build arguments for API URLs
+ARG VITE_DATA_SERVICE_URL
+ARG VITE_LOCATION_SERVICE_URL
+ARG VITE_WEATHER_SERVICE_URL
+
+# Set them as environment variables for the build
+ENV VITE_DATA_SERVICE_URL=$VITE_DATA_SERVICE_URL
+ENV VITE_LOCATION_SERVICE_URL=$VITE_LOCATION_SERVICE_URL
+ENV VITE_WEATHER_SERVICE_URL=$VITE_WEATHER_SERVICE_URL
+
 # copy package files and install
 COPY package*.json ./
 RUN npm ci --include=dev

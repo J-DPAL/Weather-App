@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const WEATHER_SERVICE = "http://127.0.0.1:8002/api/v1/weather";
+const WEATHER_SERVICE = import.meta.env.VITE_WEATHER_SERVICE_URL || "http://127.0.0.1:8002/api/v1/weather";
 
 export async function getCurrentWeather(lat, lng) {
   try {
