@@ -36,7 +36,7 @@ services:
     dockerContext: ./backend/location-service
     plan: free
     envVars:
-      - key: OPENCAGE_API_KEY
+      - key: GEOCODING_API_KEY
         sync: false
       - key: DATA_SERVICE_URL
         fromService:

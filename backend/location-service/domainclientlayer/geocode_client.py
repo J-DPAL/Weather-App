@@ -1,6 +1,6 @@
 """
-OpenCage-based geocode client. If GEOCODING_API_KEY is set in .env, this will call OpenCage.
-If not set, fallback to Day1 mock behavior.
+OpenCage-based geocode client. If GEOCODING_API_KEY (or OPENCAGE_API_KEY) is set, this will call OpenCage.
+If not set, fallback to deterministic mock behavior useful for development.
 """
 import os
 import httpx
@@ -8,7 +8,8 @@ from dotenv import load_dotenv
 from exceptions.custom_exceptions import InvalidLocationException
 
 load_dotenv()
-GEOCODING_API_KEY = os.getenv("GEOCODING_API_KEY")
+# Accept both env var names to reduce deployment misconfiguration
+GEOCODING_API_KEY = os.getenv("GEOCODING_API_KEY") or os.getenv("OPENCAGE_API_KEY")
 GEOCODING_PROVIDER = os.getenv("GEOCODING_PROVIDER", "opencage")
 
 class GeocodeClient:
