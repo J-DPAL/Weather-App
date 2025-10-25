@@ -6,18 +6,14 @@
 A full-stack weather application with real-time data, 5-day forecasts, CRUD operations, and multi-format exports. Built with microservices architecture.
 
 ## ✨ Key Features
-
-**Assessment Requirements Met:**
-- ✅ Location search (city, coordinates, addresses) with validation
-- ✅ Current weather + 5-day forecast display
-- ✅ Full CRUD operations with PostgreSQL persistence
-- ✅ Date range queries (up to 7 days)
-- ✅ Multi-format export (JSON, CSV, Markdown, XML, PDF)
-- ✅ Error handling (invalid locations, API failures)
-- ✅ Responsive design (mobile, tablet, desktop)
-- ✅ Interactive map integration (Leaflet)
-
-**Additional Features:**
+- Location search (city, coordinates, addresses) with validation
+- Current weather + 5-day forecast display
+- Full CRUD operations with PostgreSQL persistence
+- Date range queries (up to 7 days)
+- Multi-format export (JSON, CSV, Markdown, XML, PDF)
+- Error handling (invalid locations, API failures)
+- Responsive design (mobile, tablet, desktop)
+- Interactive map integration (Leaflet)
 - Dark mode toggle
 - Duplicate prevention
 - Bulk delete operations
